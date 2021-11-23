@@ -26,7 +26,7 @@ public class BasicMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
+		controller.Jump(jump);
 		jump = false;
 	}
 }
