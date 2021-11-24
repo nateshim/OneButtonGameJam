@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	[SerializeField] private Vector2 m_JumpForce = new Vector2(50f, 200f);							// Amount of force added when the player jumps.
 	[SerializeField] protected LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] protected Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] protected Transform m_CeilingCheck;							// A position marking where to check for ceilings
@@ -23,7 +23,12 @@ public class CharacterController2D : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	private void Awake()
+	public Vector2 GetVelocity()
+	{
+		return m_JumpForce;
+	}
+    
+    private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -33,6 +38,15 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+        if (Input.GetButton("Jump"))
+        {
+            GetComponent<LineRenderer>().enabled = true;
+            GetComponent<LaunchArcRenderer>().RenderArc();
+			m_JumpForce.x += 1f;
+			m_JumpForce.y += 5f;
+        } else {
+			GetComponent<LineRenderer>().enabled = false;
+		}
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -66,10 +80,11 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
             if (m_FacingRight) {
-                m_Rigidbody2D.AddForce(new Vector2(100f, m_JumpForce));
+                m_Rigidbody2D.AddForce(m_JumpForce);
             } else {
-			    m_Rigidbody2D.AddForce(new Vector2(-100f, m_JumpForce));
+			    m_Rigidbody2D.AddForce(new Vector2(-m_JumpForce.x, m_JumpForce.y));
             }
+			m_JumpForce = new Vector2(50f, 200f);
 		}
 	}
 
