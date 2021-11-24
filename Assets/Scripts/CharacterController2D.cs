@@ -14,6 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	private float jumpTimer = 1f;
 
 	[Header("Events")]
 	[Space]
@@ -38,15 +39,6 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        if (Input.GetButton("Jump"))
-        {
-            GetComponent<LineRenderer>().enabled = true;
-            GetComponent<LaunchArcRenderer>().RenderArc();
-			m_JumpForce.x += 1f;
-			m_JumpForce.y += 5f;
-        } else {
-			GetComponent<LineRenderer>().enabled = false;
-		}
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -69,6 +61,24 @@ public class CharacterController2D : MonoBehaviour
         } else {
             Flip(true);
         }
+		if (Input.GetButton("Jump") && m_Grounded)
+        {
+			if (jumpTimer > 0)
+			{
+            	GetComponent<LineRenderer>().enabled = true;
+            	GetComponent<LaunchArcRenderer>().RenderArc();
+				m_JumpForce.x += 1f;
+				m_JumpForce.y += 5f;
+				jumpTimer -= Time.deltaTime;
+			} else {
+				m_JumpForce.x = 0f;
+				m_JumpForce.y = 0f;
+				GetComponent<LineRenderer>().enabled = false;
+			}
+        } else {
+			GetComponent<LineRenderer>().enabled = false;
+			jumpTimer = 1f;
+		}
 	}
 
 
