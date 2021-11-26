@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.layer == colors["Red"] && GetComponent<SpriteRenderer>().color == teal) {
             GetComponent<SceneManagerScript>().LoadNextScene();
-        } else if (other.gameObject.layer == colors["Red"]) {
+        }  
+        if (other.gameObject.layer == colors["Red"]) {
             GetComponent<SpriteRenderer>().color = Color.red;
         } else if (other.gameObject.layer == colors["Teal"])
         {
