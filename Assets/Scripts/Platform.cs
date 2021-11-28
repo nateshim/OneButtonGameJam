@@ -72,5 +72,25 @@ public class Platform : MonoBehaviour
                 pathNodes[i].GetComponent<SpriteRenderer>().color = new Color(pathNodeColor.r, pathNodeColor.g, pathNodeColor.b, 1f);
             }
         }
+        else if (GameObject.Find("Player").GetComponent<SpriteRenderer>().color != Color.red &&  rgbColor == Color.red)
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, .2f);
+            for (int i = 0; i < pathNodes.Count; i++)
+            {
+                Color pathNodeColor = pathNodes[i].GetComponent<SpriteRenderer>().color;
+                pathNodes[i].GetComponent<SpriteRenderer>().color = new Color(pathNodeColor.r, pathNodeColor.g, pathNodeColor.b, .2f);
+            }
+
+        } else if (GameObject.Find("Player").GetComponent<SpriteRenderer>().color == Color.red && Color.red == rgbColor)
+        {
+            GetComponent<BoxCollider2D>().enabled = true;
+            GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, 1f);
+            for (int i = 0; i < pathNodes.Count; i++)
+            {
+                Color pathNodeColor = pathNodes[i].GetComponent<SpriteRenderer>().color;
+                pathNodes[i].GetComponent<SpriteRenderer>().color = new Color(pathNodeColor.r, pathNodeColor.g, pathNodeColor.b, 1f);
+            }
+        }
     }
 }
