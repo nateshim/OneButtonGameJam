@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Color teal = new Color(0, 128, 128);
+    private Color teal = new Color(0, 0.5019608f, 0.5019608f);
 
     private Dictionary<string, int> colors = new Dictionary<string, int>()
     {
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     };
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == colors["Red"] && GetComponent<SpriteRenderer>().color == teal) {
+        if (other.gameObject.layer == 15 && other.gameObject.GetComponent<SpriteRenderer>().color == teal && GetComponent<SpriteRenderer>().color == teal) {
             GetComponent<SceneManagerScript>().LoadNextScene();
         }  
         if (other.gameObject.layer == colors["Red"]) {

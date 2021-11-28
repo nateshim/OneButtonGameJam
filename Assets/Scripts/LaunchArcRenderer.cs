@@ -8,7 +8,7 @@ public class LaunchArcRenderer : MonoBehaviour
 
     public float velocity;
     public float angle;
-    private int resolution = 10;
+    private int resolution = 30;
 
     float g; //force of gravity on the y axis
     float radianAngle;

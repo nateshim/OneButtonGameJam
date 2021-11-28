@@ -23,7 +23,8 @@ public class CreatePlatformPath : MonoBehaviour
         {
             float xPos = transform.position.x + (i * (pathLength / (numNodes - 1)));
             float yPos = transform.position.y + (i * (pathHeight / (numNodes - 1)));
-            Instantiate(pathNode, new Vector3(xPos, yPos, 0), Quaternion.identity, parent);
+            GameObject node = Instantiate(pathNode, new Vector3(xPos, yPos, 0), Quaternion.identity, parent);
+            GetComponent<Platform>().pathNodes.Add(node);
         }
     }
 }

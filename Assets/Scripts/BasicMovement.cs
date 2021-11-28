@@ -11,6 +11,8 @@ public class BasicMovement : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonUp("Jump"))
 		{
+			GetComponent<Rigidbody2D>().isKinematic = false;
+         	transform.parent = null;
 			jump = true;
 		}
 

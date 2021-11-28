@@ -8,9 +8,9 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] protected Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] protected Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	const float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
-	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
+	const float k_CeilingRadius = .05f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
@@ -65,6 +65,9 @@ public class CharacterController2D : MonoBehaviour
         {
 			if (jumpTimer > 0)
 			{
+				if (jumpTimer < .25f) {
+					GetComponent<LineRenderer>().material.SetColor("_Color", Color.red);
+				}
             	GetComponent<LineRenderer>().enabled = true;
             	GetComponent<LaunchArcRenderer>().RenderArc();
 				m_JumpForce.x += 1f;
@@ -74,9 +77,11 @@ public class CharacterController2D : MonoBehaviour
 				m_JumpForce.x = 0f;
 				m_JumpForce.y = 0f;
 				GetComponent<LineRenderer>().enabled = false;
+				GetComponent<LineRenderer>().material.SetColor("_Color", Color.white);
 			}
         } else {
 			GetComponent<LineRenderer>().enabled = false;
+			GetComponent<LineRenderer>().material.SetColor("_Color", Color.white);
 			jumpTimer = 1f;
 		}
 	}
@@ -103,10 +108,5 @@ public class CharacterController2D : MonoBehaviour
 	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = right;
-
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
 	}
 }

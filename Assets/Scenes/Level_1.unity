@@ -2984,7 +2984,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!1001 &657458756711140627
 PrefabInstance:
@@ -3056,11 +3056,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770550128946667750, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.015769005
+      value: -0.015760422
       objectReference: {fileID: 0}
     - target: {fileID: 1770550128946667750, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7887678
+      value: 2.786926
       objectReference: {fileID: 0}
     - target: {fileID: 1770550128946667750, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3102,6 +3102,14 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 805989752}
+    - target: {fileID: 1770550129884117674, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.015760422
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770550129884117674, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.536926
+      objectReference: {fileID: 0}
     - target: {fileID: 1770550129884117675, guid: 3788125f1c28e41909b4eed06927088b, type: 3}
       propertyPath: m_LookAt
       value: 
