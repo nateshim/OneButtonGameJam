@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
         }  
         if (other.gameObject.layer == colors["Red"]) {
             GetComponent<SpriteRenderer>().color = Color.red;
+            GameObject.Find("Door").transform.GetChild(0).gameObject.SetActive(false);
         } else if (other.gameObject.layer == colors["Teal"])
         {
             GetComponent<SpriteRenderer>().color = teal;
+            GameObject.Find("Door").transform.GetChild(0).gameObject.SetActive(true);
         } 
     }
     void Start()
